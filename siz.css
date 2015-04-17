@@ -1,0 +1,22 @@
+.siz.zoomable {
+  cursor: zoom-in;
+}
+.sizOverlay {
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: zoom-out;
+}
+.sizImg {
+  width: auto;
+  height: auto;
+  cursor: zoom-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}

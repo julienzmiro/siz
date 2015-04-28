@@ -1,4 +1,6 @@
 .siz.zoomable {
+  cursor: -webkit-zoom-in;
+  cursor: -moz-zoom-in;
   cursor: zoom-in;
 }
 .sizOverlay {
@@ -6,11 +8,15 @@
   position: fixed;
   top: 0;
   left: 0;
+  cursor: -webkit-zoom-out;
+  cursor: -moz-zoom-out;
   cursor: zoom-out;
 }
 .sizImg {
   width: auto;
   height: auto;
+  cursor: -webkit-zoom-out;
+  cursor: -moz-zoom-out;
   cursor: zoom-out;
   position: absolute;
   top: 50%;

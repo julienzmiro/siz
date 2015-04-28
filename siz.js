@@ -35,6 +35,26 @@
     return result;
   }
 
+  function hideBodyContent () {
+    var i;
+    var body = document.getElementsByTagName("BODY")[0];
+    var nodes = body.children;
+
+    for (i = 0; i < nodes.length; ++i) {
+      nodes[i].style.display = "none";
+    }
+  }
+
+  function showBodyContent () {
+    var i;
+    var body = document.getElementsByTagName("BODY")[0];
+    var nodes = body.children;
+
+    for (i = 0; i < nodes.length; ++i) {
+      nodes[i].style.display = "";
+    }
+  }
+
   function iClickHandler (e) {
     var el = this;
     var overlay = document.createElement("DIV");
@@ -43,6 +63,9 @@
     var isBodyTooSmall = false;
     var marginL;
     var scrollVal;
+    var savedScroll = [document.body.scrollTop, document.body.scrollLeft];
+
+    hideBodyContent();
 
     if (body.clientWidth < image.naturalWidth) {
       marginL = (image.naturalWidth - window.innerWidth) / 2;
@@ -63,8 +86,12 @@
     body.appendChild(overlay);
     body.appendChild(image);
 
-    addEvent(overlay, 'click', closeZoom);
-    addEvent(image, 'click', closeZoom);
+    addEvent(overlay, 'click', function () {
+      closeZoom(savedScroll);
+    });
+    addEvent(image, 'click', function () {
+      closeZoom(savedScroll);
+    });
 
     if (isBodyTooSmall) {
       scrollVal = ((image.naturalWidth - window.innerWidth) / 2);
@@ -81,6 +108,10 @@
 
     body.removeChild(o);
     body.removeChild(i);
+
+    showBodyContent();
+
+    window.scrollTo(scrollValue[1], scrollValue[0]);
   }
 
   // Cross browser get document size from http://james.padolsey.com/snippets/get-document-height-cross-browser/

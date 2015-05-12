@@ -60,8 +60,8 @@
     var overlay = document.createElement("DIV");
     var image = el.cloneNode(true);
     var body = document.getElementsByTagName("BODY")[0];
-    var isBodyTooSmall = false;
     var marginL;
+    var marginT;
     var scrollVal;
     var savedScroll = [window.scrollY, window.scrollX];
 
@@ -80,10 +80,14 @@
     body.appendChild(overlay);
     body.appendChild(image);
 
-    if (body.clientWidth < image.naturalWidth) {
+    if (window.innerWidth < image.naturalWidth) {
       marginL = (image.naturalWidth - window.innerWidth) / 2;
       image.style.marginLeft = marginL + "px";
-      isBodyTooSmall = true;
+    }
+
+    if (window.innerHeight < image.naturalHeight) {
+      marginT = (image.naturalHeight - window.innerHeight) / 2;
+      image.style.marginTop = marginT + "px";
     }
 
     addEvent(overlay, 'click', function () {
@@ -93,10 +97,8 @@
       closeZoom(savedScroll);
     });
 
-    if (isBodyTooSmall) {
-      scrollVal = ((image.naturalWidth - window.innerWidth) / 2);
-      window.scrollBy(scrollVal, 0);
-    }
+    scrollVal = ((image.naturalWidth - window.innerWidth) / 2);
+    window.scrollBy(scrollVal, 0);
   }
 
   function closeZoom () {
